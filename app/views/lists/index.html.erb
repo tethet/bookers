@@ -1,11 +1,32 @@
 <h1>Books</h1>
 
-<% @lists.each do |list| %>
- <p>title</p>
- <span><%= link_to list.title, list_path(list.id) %></span>
-<p>body</p>
- <span><%= link_to list.body, list_path(list) %></span>
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+<% @lists.each do |list| %>
+<p>title</p>
+ <span><%= list.title %></span>
+
+<p>body</p>
+ <span><%= list.body %></span>
+
+ <span><%= link_to "Show", "/lists/#{list.id}" %>
+ </span>
+ 
+  <span><%= link_to "Edit", "/lists/#{list.id}/edit" %>
+ </span>
+ 
+  <%= link_to "Destroy", "/lists/#{list.id}", method: :delete, "data-confirm" =>"Are you sure?" %>
+
+ 
+ 
+ <% end %>
 
 <%= form_with model: @list do |f| %>
 

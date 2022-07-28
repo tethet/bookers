@@ -1,2 +1,10 @@
-<h1>Lists#edit</h1>
-<p>Find me in app/views/lists/edit.html.erb</p>
+<h1>Editing Book</h1>
+
+<%= form_with model: @list, url: update_list_path(@list.id), method: :patch do |f| %>
+ <p>Title</p>
+ <%= f.text_field :title %>
+ 
+ <p>Body</p>
+ <%= f.text_area :body %>
+ <%= f.submit '保存' %>
+<% end %>
