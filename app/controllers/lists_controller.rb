@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   def new
+    
   end
   
   def create
@@ -8,20 +9,24 @@ class ListsController < ApplicationController
     # 3. データをデータベースに保存するためのsaveメソッド実行
     list.save
     # 4. トップ画面へリダイレクト
-    redirect_to '/top'
+    redirect_to '/books'
   end
 
   def index
-
+    @lists = List.all
+    @list = List.new
   end
 
   def show
+    @list = List.find(params[:id])
   end
 
   def edit
   end
   
+  
   def list_params
     params.require(:list).permit(:title, :body)
   end
+ 
 end
